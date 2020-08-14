@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "test": "make coverage",
+    "test": "mocha",
     "lint": "eslint './**/*.js'"
   },
   "dependencies": {
