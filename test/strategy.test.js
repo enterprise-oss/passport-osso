@@ -1,7 +1,6 @@
 var should = require('should');
 var sinon = require('sinon');
-// eslint-disable-next-line node/no-missing-require
-var OssoStrategy = require('passport-osso/strategy');
+var OssoStrategy = require('../lib/passport-osso/strategy');
 
 describe('OssoStrategy', function () {
   var it_should_handle_errors = function () {
