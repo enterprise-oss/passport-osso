@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "test": "make coveralls",
+    "test": "mocha",
     "lint": "eslint './**/*.js'"
   },
   "dependencies": {
