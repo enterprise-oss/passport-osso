@@ -1,0 +1,54 @@
+{
+  "name": "passport-osso",
+  "version": "0.0.1",
+  "description": "Osso authentication strategy for Passport.",
+  "author": {
+    "name": "EnterpriseOSS",
+    "url": "https://github.com/enterprise-oss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enterprise-oss/passport-osso.git"
+  },
+  "keywords": [
+    "node",
+    "passport",
+    "osso",
+    "SAML",
+    "SSO"
+  ],
+  "bugs": {
+    "url": "https://github.com/enterprise-oss/passport-osso/issues"
+  },
+  "main": "./lib/passport-osso",
+  "engines": {
+    "node": ">= 8.8.0"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "//^(?!.*node_modules.*$).*lib//"
+    }
+  },
+  "scripts": {
+    "test": "make coveralls",
+    "lint": "eslint './**/*.js'"
+  },
+  "dependencies": {
+    "passport-oauth": "^1.0.0",
+    "querystring": "^0.2.0",
+    "util": "^0.12.3"
+  },
+  "devDependencies": {
+    "blanket": "^1.2.3",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "mocha": "^8.1.1",
+    "mocha-lcov-reporter": "^1.3.0",
+    "prettier": "^2.0.5",
+    "should": "^13.2.3",
+    "sinon": "^9.0.3"
+  }
+}
