@@ -10,3 +10,14 @@ steps:
     - "yarn install"
     - "yarn test"
     label: ":mocha:"
+
+  - wait  
+
+  - block: ":npm: Publish :red_button:"
+    if: build.tag != null
+  
+  - name: "Push :npm:"
+    commands: 
+    - "yarn install"
+    - "npm publish"
+    if: build.tag != null
