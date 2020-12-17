@@ -42,7 +42,7 @@
     "blanket": "^1.2.3",
     "coveralls": "^3.1.0",
     "eslint": "^7.15.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.0",
     "mocha": "^8.2.1",
