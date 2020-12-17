@@ -12,6 +12,8 @@ unobtrusively integrated into any application or framework that supports
 ## Installation
 
     $ npm install passport-osso
+    # or
+    $ yarn add passport-osso
 
 ## Usage
 
@@ -20,7 +22,7 @@ unobtrusively integrated into any application or framework that supports
 The Osso authentication strategy authenticates users using a Osso account
 and OAuth 2.0 tokens. The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
-specifying a client ID, client secret, and callback URL.
+specifying an Osso baseUrl, client ID, client secret, and callback URL.
 
 ```javascript
 const OssoStrategy = require('passport-osso').Strategy;
@@ -28,6 +30,7 @@ const OssoStrategy = require('passport-osso').Strategy;
 passport.use(
   new OssoStrategy(
     {
+      baseUrl: 'https://my-osso.ossoapp.io',
       clientID: client_id,
       clientSecret: client_secret,
       callbackURL: 'http://localhost:8888/auth/osso/callback'
@@ -54,7 +57,20 @@ app.get('/auth/osso', passport.authenticate('osso'), function(req, res) {
   // The request will be redirected to osso for authentication, so this
   // function will not be called.
 });
+```
 
+The above example will show Osso's hosted login page.
+
+You can also gather an email or domain from the user wanting to sign in, and pass that to the Osso strategy, such that the user is sent directly to their IDP:
+```javascript
+app.post('/auth/osso', (req, res, next) => {
+  const { email } = req.body;
+  const authenticator = passport.authenticate('osso', { email })
+  authenticator(req, res, next)
+})
+```
+
+```javascript
 app.get(
   '/auth/osso/callback',
   passport.authenticate('osso', { failureRedirect: '/login' }),
@@ -65,63 +81,6 @@ app.get(
 );
 ```
 
-### Using scopes
-
-Depending on the data you want to fetch, you may want to specify custom scopes. For more information about scopes in the Osso Web API check [their developer site](https://developer.osso.com/web-api/using-scopes/).
-
-By default, no scope is passed. That means that you won't fetch information such as display name, picture or email. You can get those by using these scopes:
-
-- `user-read-email`: Returns the email address of the user on Osso, if it exists.
-- `user-read-private`: Returns private information about the user such as display name and picture, if they are set.
-
-You can specify the parameters in the `authenticate` call:
-
-```javascript
-app.get(
-  '/auth/osso',
-  passport.authenticate('osso', {
-    scope: ['user-read-email', 'user-read-private']
-  }),
-  function(req, res) {
-    // The request will be redirected to osso for authentication, so this
-    // function will not be called.
-  }
-);
-```
-
-### Forcing login dialog
-
-You can force the login dialog using the `showDialog` parameter when authenticating:
-
-```javascript
-app.get(
-  '/auth/osso',
-  passport.authenticate('osso', {
-    scope: ['user-read-email', 'user-read-private'],
-    showDialog: true
-  }),
-  function(req, res) {
-    // The request will be redirected to osso for authentication, so this
-    // function will not be called.
-  }
-);
-```
-
 ## Examples
 
-For a complete, working example, refer to the [login example](https://github.com/jmperez/passport-osso/tree/master/examples/login).
-
-You can get your keys on [Osso - My Applications](https://developer.osso.com/my-applications).
-
-## Tests
-
-    $ npm install --dev
-    $ make test
-
-## Build and Coverage Status
-
-[![Build Status](https://travis-ci.org/JMPerez/passport-osso.svg?branch=master)](https://travis-ci.org/JMPerez/passport-osso) [![Coverage Status](https://coveralls.io/repos/JMPerez/passport-osso/badge.png?branch=master)](https://coveralls.io/r/JMPerez/passport-osso?branch=master)
-
-## License
-
-[The MIT License](http://opensource.org/licenses/MIT)
+For a complete, working example on a clean Express app, refer to the [Osso NodeJS example](https://github.com/enterprise-oss/osso-nodejs-example).
