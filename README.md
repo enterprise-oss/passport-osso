@@ -1,7 +1,7 @@
 # Passport-Osso
 
 [Passport](http://passportjs.org/) strategy for authenticating SAML based SSO users with an [Osso](https://ossoapp.com/)
-isntance using the OAuth 2.0 API.
+instance using the OAuth 2.0 API.
 
 This module lets you authenticate using Osso in your Node.js applications.
 By plugging into Passport, Osso authentication can be easily and
@@ -19,7 +19,7 @@ unobtrusively integrated into any application or framework that supports
 
 ### Configure Strategy
 
-The Osso authentication strategy authenticates users using a Osso account
+The Osso authentication strategy authenticates users using an Osso account
 and OAuth 2.0 tokens. The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
 specifying an Osso baseUrl, client ID, client secret, and callback URL.
