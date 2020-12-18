@@ -1,5 +1,5 @@
 {
-  "name": "passport-osso",
+  "name": "@enterprise-oss/passport-osso",
   "version": "0.0.1",
   "description": "Osso authentication strategy for Passport.",
   "author": {
